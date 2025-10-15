@@ -49,7 +49,7 @@ public class PassengerServiceTest {
 
         assertThrows(IllegalArgumentException.class, ()->
                 passengerService.create(Passenger.builder()
-                        .passengerID("P3")
+                        .passengerID("P2")
                         .name("EmreDup")
                         .email("emredup.atu.ie")
                         .build()));
