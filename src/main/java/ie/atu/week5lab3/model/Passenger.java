@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class Passenger {
 
 
-    @NotBlank @Size(max = 50)
+    @NotBlank @Size(max = 40)
     private String passengerID;
 
     @NotBlank @Size(max = 40)
