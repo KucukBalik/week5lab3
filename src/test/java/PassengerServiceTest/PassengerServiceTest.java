@@ -34,7 +34,7 @@ public class PassengerServiceTest {
 
         Optional<Passenger> found = passengerService.findById("P1");
         assertTrue(found.isPresent());
-        assertEquals("P1", found.get().getName());
+        assertEquals("P1", found.get().getPassengerID());
 
     }
 
@@ -49,7 +49,7 @@ public class PassengerServiceTest {
 
         assertThrows(IllegalArgumentException.class, ()->
                 passengerService.create(Passenger.builder()
-                        .passengerID("P2")
+                        .passengerID("P3")
                         .name("EmreDup")
                         .email("emredup.atu.ie")
                         .build()));
