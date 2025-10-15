@@ -38,7 +38,7 @@ public class PassengerController {
     @PostMapping
     public ResponseEntity<Passenger> create(@Valid @RequestBody Passenger passenger) {
 
-        Passenger created = PassengerService.create(passenger);
+        Passenger created = passengerService.create(passenger);
 
         return ResponseEntity
                 .created(URI.create(URI.create("/api/passenger/") + created.getPassengerID()))
