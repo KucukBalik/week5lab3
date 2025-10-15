@@ -46,6 +46,20 @@ public class PassengerService {
 
     }
 
+    public Passenger update(Passenger passenger) {
+
+        if(findById(passenger.getPassengerID()).isPresent()) {
+
+            store.set(store.indexOf(findById(passenger.getPassengerID()).get()), passenger);
+            return passenger;
+
+
+
+        }
+
+        throw new IllegalArgumentException("Passenger with ID " + passenger.getPassengerID() + " does not exist");
+    }
+
 
 
 
