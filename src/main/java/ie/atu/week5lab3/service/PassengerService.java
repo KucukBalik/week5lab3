@@ -61,6 +61,19 @@ public class PassengerService {
     }
 
 
+    public Passenger delete(Passenger passenger) {
+
+        if(findById(passenger.getPassengerID()).isPresent()) {
+
+            store.remove(passenger);
+            return passenger;
+
+        }
+
+        throw new IllegalArgumentException("Passenger with ID " + passenger.getPassengerID() + " does not exist");
+    }
+
+
 
 
 }

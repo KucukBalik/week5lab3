@@ -58,4 +58,18 @@ public class PassengerController {
         return ResponseEntity.ok(updated);
 
     }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Passenger> delete(@PathVariable String id) {
+
+        if(passengerService.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        Passenger passenger = passengerService.findById(id).get();
+        Passenger deleted = passengerService.delete(passenger);
+
+        return ResponseEntity.ok(deleted);
+
+    }
 }
