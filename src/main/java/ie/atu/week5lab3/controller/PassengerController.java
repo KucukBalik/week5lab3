@@ -45,4 +45,16 @@ public class PassengerController {
                 .body(created);
 
     }
+
+
+    @PutMapping
+    public ResponseEntity<Passenger> update(@Valid @RequestBody Passenger passenger) {
+
+            Passenger updated = passengerService.update(passenger);
+
+
+
+            return ResponseEntity.ok(updated);
+
+    }
 }
