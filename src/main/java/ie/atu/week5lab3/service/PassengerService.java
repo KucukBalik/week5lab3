@@ -41,7 +41,7 @@ public class PassengerService {
 
         }
 
-    store.add(passenger);
+        store.add(passenger);
         return passenger;
 
     }
