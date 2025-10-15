@@ -11,6 +11,40 @@ import java.util.Optional;
 @Service
 public class PassengerService {
 
+    private final List<Passenger> store = new ArrayList<>();
+
+
+    public List<Passenger> findAll() {
+
+        return new ArrayList<>(store);
+
+    }
+
+    public Optional<Passenger> findById(String id) {
+
+        for (Passenger p : store) {
+            if(p.getPassengerID().equals(id)) {
+                return Optional.of(p);
+            }
+        }
+
+        return Optional.empty();
+    }
+
+
+    public Passenger create(Passenger passenger) {
+
+        if(findById(passenger.getPassengerID()).isPresent()) {
+
+            throw new IllegalStateException("Passenger with ID " + passenger.getPassengerID() + " already exists");
+
+
+        }
+
+        store.add(passenger);
+        return passenger;
+
+    }
 
 
 
