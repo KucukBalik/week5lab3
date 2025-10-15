@@ -34,7 +34,7 @@ public class PassengerServiceTest {
 
         Optional<Passenger> found = passengerService.findById("P1");
         assertTrue(found.isPresent());
-        assertEquals("P1", found.get().getName());
+        assertEquals("P1", found.get().getPassengerID());
 
     }
 
