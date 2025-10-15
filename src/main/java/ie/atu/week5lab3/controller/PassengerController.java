@@ -56,5 +56,6 @@ public class PassengerController {
         Passenger updated = passengerService.update(passenger);
 
         return ResponseEntity.ok(updated);
+
     }
 }

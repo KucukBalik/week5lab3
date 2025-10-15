@@ -2,7 +2,6 @@ package ie.atu.week5lab3.service;
 
 
 import ie.atu.week5lab3.model.Passenger;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
