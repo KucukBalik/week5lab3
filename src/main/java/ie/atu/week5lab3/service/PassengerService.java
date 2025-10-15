@@ -36,7 +36,7 @@ public class PassengerService {
 
         if(findById(passenger.getPassengerID()).isPresent()) {
 
-            throw new IllegalStateException("Passenger with ID " + passenger.getPassengerID() + " already exists");
+            throw new IllegalArgumentException("Passenger with ID " + passenger.getPassengerID() + " already exists");
 
 
         }
