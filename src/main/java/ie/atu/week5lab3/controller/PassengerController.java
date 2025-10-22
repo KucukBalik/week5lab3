@@ -23,53 +23,62 @@ public class PassengerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Passenger> getAll(@PathVariable String id) {
+    public ResponseEntity<?> getAll(@PathVariable String id) {
 
         Optional<Passenger> maybe = passengerService.findById(id);
 
         if (maybe.isPresent()) {
             return ResponseEntity.ok(maybe.get());
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Passenger with ID " + id + " does not exist");
         }
     }
 
 
     @PostMapping
-    public ResponseEntity<Passenger> create(@Valid @RequestBody Passenger passenger) {
+    public ResponseEntity<?> create(@Valid @RequestBody Passenger passenger) {
 
         Passenger created = passengerService.create(passenger);
 
         return ResponseEntity
-                .created(URI.create(URI.create("/api/passenger/") + created.getPassengerID()))
-                .body(created);
+                .created(URI.create(("/api/passenger/") + created.getPassengerID()))
+                .body("Passenger with ID " + created.getPassengerID() + " has been created");
 
     }
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<Passenger> update(@Valid @RequestBody Passenger passenger, @PathVariable String id) {
+    public ResponseEntity<?> update(@Valid @RequestBody Passenger passenger, @PathVariable String id) {
 
         if(passengerService.findById(id).isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        Passenger updated = passengerService.update(passenger);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Passenger with ID: " + id + " could not found.");
+        }else{
+            Passenger updated = passengerService.update(passenger);
 
-        return ResponseEntity.ok(updated);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("Passenger with ID: " + id + " has been updated.");
+
+        }
 
     }
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Passenger> delete(@PathVariable String id) {
+    public ResponseEntity<?> delete(@PathVariable String id) {
 
         if(passengerService.findById(id).isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        Passenger passenger = passengerService.findById(id).get();
-        Passenger deleted = passengerService.delete(passenger);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Passenger with ID: " + id + " could not found.");
+        }else{
+            Passenger passenger = passengerService.findById(id).get();
+            Passenger deleted = passengerService.delete(passenger);
 
-        return ResponseEntity.ok(deleted);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("Passenger with ID: " + id + " has been deleted.");
+        }
+
 
     }
 }
