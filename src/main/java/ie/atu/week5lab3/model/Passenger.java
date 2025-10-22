@@ -21,7 +21,8 @@ public class Passenger {
     @NotBlank @Size(max = 60)
     private String name;
 
-    @NotBlank @Email
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email must be valid")
     private String email;
 
 }

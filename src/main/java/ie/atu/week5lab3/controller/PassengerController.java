@@ -22,8 +22,11 @@ public class PassengerController {
         this.passengerService = passengerService;
     }
 
+    public ResponseEntity<List<Passenger>> getAll() {
+       return ResponseEntity.ok(passengerService.findAll());}
+
     @GetMapping("/{id}")
-    public ResponseEntity<?> getAll(@PathVariable String id) {
+    public ResponseEntity<?> getOne(@PathVariable String id) {
 
         Optional<Passenger> maybe = passengerService.findById(id);
 
