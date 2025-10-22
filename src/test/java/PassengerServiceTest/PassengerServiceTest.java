@@ -55,5 +55,26 @@ public class PassengerServiceTest {
                         .build()));
     }
 
+    @Test
+    void updateSuccess(){
+
+        Passenger p = passengerService.create(Passenger.builder()
+                .passengerID("P1")
+                .name("Emre")
+                .email("emre.atu.ie")
+                .build());
+
+
+        Passenger updated = new Passenger("P1", "Emre Updated", "emre.atu.ie");
+
+        passengerService.update(updated);
+
+        Passenger found = passengerService.findById("P1").get();
+
+        assertEquals("Emre Updated", found.getName());
+        assertEquals("emre.atu.ie", found.getEmail());
+
+
+    }
 
 }
