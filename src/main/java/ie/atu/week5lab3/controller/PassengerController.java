@@ -75,7 +75,7 @@ public class PassengerController {
             Passenger passenger = passengerService.findById(id).get();
             Passenger deleted = passengerService.delete(passenger);
 
-            return ResponseEntity.status(HttpStatus.OK)
+            return ResponseEntity.status(HttpStatus.NO_CONTENT)
                     .body("Passenger with ID: " + id + " has been deleted.");
         }
 
