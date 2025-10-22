@@ -98,4 +98,36 @@ public class PassengerServiceTest {
 
     }
 
+    @Test
+    void deleteSuccess(){
+
+
+        Passenger p = passengerService.create(Passenger.builder()
+                .passengerID("P1")
+                .name("Emre")
+                .email("emre.atu.ie")
+                .build());
+
+        passengerService.delete(p);
+
+
+    }
+
+
+    @Test
+    void deleteFail(){
+
+
+        Passenger p = passengerService.create(Passenger.builder()
+                .passengerID("P1")
+                .name("Emre")
+                .email("emre.atu.ie")
+                .build());
+
+        assertThrows(IllegalArgumentException .class , ()->
+                passengerService.delete(new Passenger("P3", "EmreUpdated", "emre.atu.ie")));
+
+
+    }
+
 }
