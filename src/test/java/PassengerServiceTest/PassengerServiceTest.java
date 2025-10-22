@@ -6,6 +6,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -73,6 +76,56 @@ public class PassengerServiceTest {
 
         assertEquals("Emre Updated", found.getName());
         assertEquals("emre.atu.ie", found.getEmail());
+
+
+    }
+
+
+    @Test
+    void updateFail(){
+
+        List<Passenger> passengers = new ArrayList<Passenger>();
+
+        Passenger p = passengerService.create(Passenger.builder()
+                .passengerID("P1")
+                .name("Emre")
+                .email("emre.atu.ie")
+                .build());
+
+        assertThrows(IllegalArgumentException.class,
+                ()-> passengerService.update(new Passenger("P3", "EmreUpdated", "emre.atu.ie")));
+
+
+    }
+
+    @Test
+    void deleteSuccess(){
+
+
+        Passenger p = passengerService.create(Passenger.builder()
+                .passengerID("P1")
+                .name("Emre")
+                .email("emre.atu.ie")
+                .build());
+
+        passengerService.delete(p);
+
+
+    }
+
+
+    @Test
+    void deleteFail(){
+
+
+        Passenger p = passengerService.create(Passenger.builder()
+                .passengerID("P1")
+                .name("Emre")
+                .email("emre.atu.ie")
+                .build());
+
+        assertThrows(IllegalArgumentException .class , ()->
+                passengerService.delete(new Passenger("P3", "EmreUpdated", "emre.atu.ie")));
 
 
     }
